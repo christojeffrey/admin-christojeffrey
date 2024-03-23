@@ -3,9 +3,10 @@
 
 	export let value: string = '';
 	export let minimumHeight: number = 50;
-    
+
 	let textAreaElement: HTMLTextAreaElement;
 	let placeholder = 'placeholder';
+
 
 	function handleInput(event: Event) {
 		value = (event.target as HTMLTextAreaElement).value;

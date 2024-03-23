@@ -2,7 +2,7 @@
 <script lang="ts">
 	import type { FocusEventHandler, FormEventHandler } from 'svelte/elements';
 
-	export let value = ' asfasfasdfasd';
+	export let value = '';
 	export let placeholder = 'placeholder';
 	export let inputClass = '';
 	let placeholderMode: boolean;
@@ -30,7 +30,7 @@
 	</span>
 	<input
 		class={`${inputClass} absolute left-0 right-0 bottom-0 top-0 p-2 text-ellipsis`}
-		{value}
+		bind:value
 		on:input={handleInput}
 		on:focusin={handleFocus}
 		on:focusout={handleFocusOut}
