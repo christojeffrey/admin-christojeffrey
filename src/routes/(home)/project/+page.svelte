@@ -1,9 +1,18 @@
 <script lang="ts">
+	import { env } from '$env/dynamic/public';
+	import { ConfirmationDialogConfig, isConfirmationDialogShown } from '$states';
 	import DraggableContainer from './components/draggable-container.svelte';
 	import ProjectCard from './components/project-card.svelte';
+	import SaveButtonWithConfirmation from './components/save-button-with-confirmation.svelte';
 	export let data;
 
 	let projects = data.projects.projects;
+	async function handleSaveButtonClick() {
+		console.log('projects');
+		let data = await fetch(env.PUBLIC_BASE_BACKEND_URL + '/projects');
+		let response = await data.json();
+		console.log(response);
+	}
 </script>
 
 <div class="p-4 h-screen relative flex flex-col flex-grow">
@@ -17,7 +26,5 @@
 		</DraggableContainer>
 	</div>
 	<!-- button container -->
-	<div class="mr-4 mb-4 h-12 border-2 bg-blue-50 absolute bottom-0 right-0">
-		<button> save </button>
-	</div>
+	<SaveButtonWithConfirmation onConfirm={handleSaveButtonClick} />
 </div>
