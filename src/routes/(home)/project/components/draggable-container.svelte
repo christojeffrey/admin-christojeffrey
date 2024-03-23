@@ -18,11 +18,11 @@
 	export let items: any[] = [];
 </script>
 
-<div>
+<div class="flex flex-col gap-4">
 	{#each items as item (item)}
 		<div
 			animate:flip={{ duration: dragDuration }}
-			class={`rounded-xl p-2 mb-4 bg-neutral-50`}
+			class={`rounded-xl bg-neutral-50`}
 			draggable="true"
 			on:dragstart={() => {
 				draggedItem = item;
