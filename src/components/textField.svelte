@@ -4,6 +4,7 @@
 
 	export let value = ' asfasfasdfasd';
 	export let placeholder = 'placeholder';
+	export let inputClass = '';
 	let placeholderMode: boolean;
 
 	const handleInput: FormEventHandler<HTMLInputElement> = (event) => {
@@ -24,11 +25,11 @@
 <div
 	class={`${$$restProps.class} inline-block relative max-w-full overflow-clip whitespace-nowrap ${placeholderMode ? 'text-neutral-300' : ''}`}
 >
-	<span class="p-2 text-ellipsis">
+	<span class={`${inputClass} p-2 text-ellipsis`}>
 		{value}
 	</span>
 	<input
-		class="absolute left-0 right-0 bottom-0 top-0 p-2 text-ellipsis"
+		class={`${inputClass} absolute left-0 right-0 bottom-0 top-0 p-2 text-ellipsis`}
 		{value}
 		on:input={handleInput}
 		on:focusin={handleFocus}
