@@ -3,11 +3,15 @@
 	import SaveButtonWithConfirmation from './components/save-button-with-confirmation.svelte';
 	import Button from '$ui/button.svelte';
 	export let data;
+	import type { Project } from '$types';
+	import { writable } from 'svelte/store';
+	import ProjectCard from './components/project-card.svelte';
 
-	let projects = data.projects.projects;
+	// store projects in writable variable
+	const projects = writable<Project[]>(data.projects.projects);
 	async function handleSaveButtonClick() {
 		console.log('projects');
-		console.log(projects);
+		console.log($projects);
 		// TODO: update projects
 	}
 </script>
@@ -19,14 +23,23 @@
 		<div class="text-3xl">Projects</div>
 		<Button
 			on:click={() => {
-				projects = [{ title: '', description: '', link: '', youtubeLink: '' }, ...projects];
+				projects.update((projects) => [
+					...projects,
+					{
+						title: 'New Project',
+						description: 'Description',
+						youtubeLink: 'asdf'
+					}
+				]);
 			}}>Add Project</Button
 		>
 	</div>
 
 	<!-- draggables' container -->
 	<div class="max-h-full overflow-auto flex-grow mb-16">
-		<DraggableContainer bind:items={projects}></DraggableContainer>
+		<DraggableContainer writeableVar={projects} let:index let:draggedItem>
+			<ProjectCard writeableVar={projects} {index} {draggedItem} />
+		</DraggableContainer>
 	</div>
 
 	<!-- button container -->
