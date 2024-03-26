@@ -1,6 +1,6 @@
 <script lang="ts">
-	import DraggableContainer from './components/draggable-container.svelte';
-	import SaveButtonWithConfirmation from './components/save-button-with-confirmation.svelte';
+	import DraggableContainer from '$components/draggable-container.svelte';
+	import SaveButtonWithConfirmation from '$components/save-button-with-confirmation.svelte';
 	import Button from '$ui/button.svelte';
 	export let data;
 	import type { Project } from '$types';
@@ -36,8 +36,8 @@
 
 	<!-- draggables' container -->
 	<div class="max-h-full overflow-auto flex-grow mb-16">
-		<DraggableContainer writeableVar={projectsWriteable} let:index let:draggedItem>
-			<ProjectCard writeableVar={projectsWriteable} {index} {draggedItem} />
+		<DraggableContainer writeableVar={projectsWriteable} let:index let:isDragged>
+			<ProjectCard writeableVar={projectsWriteable} {index} {isDragged} />
 		</DraggableContainer>
 	</div>
 

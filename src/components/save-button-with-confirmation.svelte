@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ConfirmationDialogConfig, isConfirmationDialogShown } from '$states';
 	import Button from '$ui/button.svelte';
+
 	export let onConfirm = () => {};
 </script>
 

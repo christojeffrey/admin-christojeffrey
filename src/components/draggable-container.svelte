@@ -10,6 +10,7 @@
 		if (draggedItem === targetItem || animatingItems.has(targetItem)) return;
 		animatingItems.add(targetItem);
 		setTimeout(() => animatingItems.delete(targetItem), dragDuration);
+
 		const projectAIndex = $writeableVar.indexOf(draggedItem);
 		const projectBIndex = $writeableVar.indexOf(targetItem);
 		$writeableVar[projectAIndex] = targetItem;
@@ -34,7 +35,7 @@
 			role="presentation"
 		>
 			<!-- children -->
-			<slot {index} {draggedItem} />
+			<slot {index} isDragged={draggedItem && draggedItem == item} />
 
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 		</div>

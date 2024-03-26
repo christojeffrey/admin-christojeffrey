@@ -3,7 +3,7 @@
 	import '../app.css';
 </script>
 
-<div class="flex flex-col h-screen w-screen">
+<div class="flex flex-col h-screen w-screen border-red-500 justify-between">
 	<ProgressBar color="#7F57F1" />
 	<slot />
 </div>
