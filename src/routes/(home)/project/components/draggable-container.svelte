@@ -1,21 +1,18 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
-	import TextField from '$ui/text-field.svelte';
-	import TextArea from '$ui/text-area.svelte';
-	import { ConfirmationDialogConfig, isConfirmationDialogShown } from '$states';
 	import type { Writable } from 'svelte/store';
 	const dragDuration = 300;
 
 	let draggedItem: any;
 	let animatingItems = new Set();
 
-	function swapWith(targetProject: any) {
-		if (draggedItem === targetProject || animatingItems.has(targetProject)) return;
-		animatingItems.add(targetProject);
-		setTimeout(() => animatingItems.delete(targetProject), dragDuration);
+	function swapWith(targetItem: any) {
+		if (draggedItem === targetItem || animatingItems.has(targetItem)) return;
+		animatingItems.add(targetItem);
+		setTimeout(() => animatingItems.delete(targetItem), dragDuration);
 		const projectAIndex = $writeableVar.indexOf(draggedItem);
-		const projectBIndex = $writeableVar.indexOf(targetProject);
-		$writeableVar[projectAIndex] = targetProject;
+		const projectBIndex = $writeableVar.indexOf(targetItem);
+		$writeableVar[projectAIndex] = targetItem;
 		$writeableVar[projectBIndex] = draggedItem;
 	}
 	export let writeableVar: Writable<any>;
@@ -30,7 +27,9 @@
 			on:dragstart={() => {
 				draggedItem = item;
 			}}
-			on:dragenter={() => swapWith(item)}
+			on:dragenter={() => {
+				swapWith(item);
+			}}
 			on:dragend={() => (draggedItem = null)}
 			role="presentation"
 		>

@@ -8,10 +8,9 @@
 	import ProjectCard from './components/project-card.svelte';
 
 	// store projects in writable variable
-	const projects = writable<Project[]>(data.projects.projects);
+	const projectsWriteable = writable<Project[]>(data.projects.projects);
 	async function handleSaveButtonClick() {
-		console.log('projects');
-		console.log($projects);
+		console.log($projectsWriteable);
 		// TODO: update projects
 	}
 </script>
@@ -23,22 +22,22 @@
 		<div class="text-3xl">Projects</div>
 		<Button
 			on:click={() => {
-				projects.update((projects) => [
-					...projects,
+				$projectsWriteable = [
+					...$projectsWriteable,
 					{
 						title: 'New Project',
 						description: 'Description',
 						youtubeLink: 'asdf'
 					}
-				]);
+				];
 			}}>Add Project</Button
 		>
 	</div>
 
 	<!-- draggables' container -->
 	<div class="max-h-full overflow-auto flex-grow mb-16">
-		<DraggableContainer writeableVar={projects} let:index let:draggedItem>
-			<ProjectCard writeableVar={projects} {index} {draggedItem} />
+		<DraggableContainer writeableVar={projectsWriteable} let:index let:draggedItem>
+			<ProjectCard writeableVar={projectsWriteable} {index} {draggedItem} />
 		</DraggableContainer>
 	</div>
 

@@ -7,9 +7,10 @@ export async function load({ request }: RequestEvent) {
 		request as unknown as SessionManager
 	);
 	let user = null;
+	let accessToken = null;
 	if (isAuthenticated) {
 		user = await kindeAuthClient.getUser(request as unknown as SessionManager);
-
+		accessToken = await kindeAuthClient.getToken(request as unknown as SessionManager);
 		// const userOrganizations = await kindeAuthClient.getUserOrganizations(
 		// 	request as unknown as SessionManager
 		// );
@@ -39,6 +40,7 @@ export async function load({ request }: RequestEvent) {
 
 	return {
 		isAuthenticated,
-		user
+		user,
+		accessToken
 	};
 }
