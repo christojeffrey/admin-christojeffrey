@@ -11,14 +11,14 @@
 	// store experiences in writable variable
 	const experiencesWriteable = writable<Experience[]>(data.experiences.experiences);
 	async function handleSaveButtonClick() {
-		console.log($experiencesWriteable);
 		// TODO: update experiences
 		await fetch(`${env.PUBLIC_BASE_BACKEND_URL}/restricted/update-all/experiences`, {
 			method: 'POST',
 			headers: {
-				Authentication: data.accessToken as string
+				'content-type': 'application/json',
+				Authorization: data.accessToken as string
 			},
-			body: JSON.stringify({ experiences: $experiencesWriteable })
+			body: JSON.stringify($experiencesWriteable)
 		});
 	}
 
