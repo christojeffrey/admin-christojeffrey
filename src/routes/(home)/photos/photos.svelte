@@ -22,7 +22,7 @@
 	>
 		<img src={photo.thumbnail.url} alt={photo.name} class={`${showOverlay && 'brightness-50'}`} />
 		{#if showOverlay}
-			<div class="absolute top-0 left-0 w-full h-full text-white flex justify-center items-center">
+			<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
 				<div>
 					<Button on:click={onDelete}>delete</Button>
 				</div>
