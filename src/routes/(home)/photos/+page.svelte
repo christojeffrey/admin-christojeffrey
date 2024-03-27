@@ -41,18 +41,37 @@
 						}
 					}
 				);
-				progresses[index] = '';
-				return axiosRequest;
+				progresses[index] = 'getting blur data...';
+				const blurData = await axios.post(
+					`/api/blur`,
+					{
+						url: axiosRequest.data.data.medium.url
+					},
+					{
+						onUploadProgress: (progressEvent) => {
+							console.log(progressEvent.progress);
+							if (progressEvent.progress) {
+								progresses[index] = `BD:${Math.round(progressEvent.progress * 100)}%`;
+							} else {
+								progresses[index] = 'BD:uploading...';
+							}
+						}
+					}
+				);
+				console.log('blurData');
+
+				return { uploadRespond: axiosRequest, blurBase64: blurData.data };
 			})
 		);
 
 		let parsedResponse = responses.map((response) => {
-			const data = response.data.data;
+			const data = response.uploadRespond.data.data;
 			return {
 				thumbnail: data.thumb,
 				medium: data.medium,
 				full: data.image,
-				title: data.title
+				title: data.title,
+				blurBase64: response.blurBase64
 			};
 		});
 

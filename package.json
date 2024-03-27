@@ -36,6 +36,11 @@
 	"type": "module",
 	"dependencies": {
 		"@kinde-oss/kinde-auth-sveltekit": "^1.2.4",
-		"axios": "^1.6.8"
+		"axios": "^1.6.8",
+		"plaiceholder": "^3.0.0",
+		"sharp": "^0.33.3"
+	},
+	"volta": {
+		"node": "21.7.1"
 	}
 }
