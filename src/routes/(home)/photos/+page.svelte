@@ -66,6 +66,8 @@
 			},
 			body: JSON.stringify(newPhotos)
 		});
+		// revalidate the cache
+		await fetch('https://photos.christojeffrey.com/api/revalidate?tag=photos');
 		// clear files
 		photos = newPhotos;
 		form.reset();

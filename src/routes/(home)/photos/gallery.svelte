@@ -16,12 +16,14 @@
 		});
 
 		photos = newPhotos;
+		// revalidate the cache
+		await fetch('https://photos.christojeffrey.com/api/revalidate?tag=photos');
 	};
 </script>
 
 <!-- render all photos -->
 <div class="container">
-	{#each photos as photo, index}
+	{#each photos.reverse() as photo, index}
 		<Photos
 			{photo}
 			onDelete={() => {
