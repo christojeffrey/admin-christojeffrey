@@ -5,7 +5,7 @@
 	export let accessToken: string;
 
 	let handleDelete = async (photoIndex: number) => {
-		const newPhotos = photos.filter((photo, index) => index !== photoIndex);
+		const newPhotos = photos.filter((_photo, index) => index !== photoIndex);
 		await fetch(`${env.PUBLIC_BASE_BACKEND_URL}/restricted/update-all/photos`, {
 			method: 'POST',
 			headers: {

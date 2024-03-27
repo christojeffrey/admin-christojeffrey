@@ -13,9 +13,15 @@
 	let photos = data.photos.photos;
 
 	let uploading = false;
+	let isButtonDisabled = true;
 	let progresses: string[] = [];
+
+	$: {
+		isButtonDisabled = files ? files.length === 0 : true;
+	}
 	async function handleClick() {
 		uploading = true;
+		isButtonDisabled = true;
 		const responses = await Promise.all(
 			Array.from(files).map(async (file: File, index: number) => {
 				// create axios request with onProgress
@@ -63,7 +69,7 @@
 		// clear files
 		photos = newPhotos;
 		form.reset();
-		files = [] as unknown as FileList;
+		files = null as any;
 		uploading = false;
 		console.log('done!');
 	}
@@ -86,10 +92,10 @@
 					</div>
 				{/each}
 			</div>
-			<div>
-				<Button on:click={handleClick}>upload!</Button>
-			</div>
 		{/if}
+		<div>
+			<Button on:click={handleClick} disabled={isButtonDisabled}>upload!</Button>
+		</div>
 	</section>
 
 	<!-- galery -->
