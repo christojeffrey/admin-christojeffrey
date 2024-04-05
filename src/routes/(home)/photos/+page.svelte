@@ -96,7 +96,7 @@
 	}
 </script>
 
-<div class=" flex-grow p-4">
+<div class=" flex-grow p-4 h-screen overflow-auto">
 	<div class="text-3xl">Photos</div>
 	<!-- input file upload -->
 	<section class="max-h-[50vh] overflow-auto">

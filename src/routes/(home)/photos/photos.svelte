@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$ui/button.svelte';
+	import DeleteButtonWithConfirmation from './components/delete-button-with-confirmation.svelte';
 
 	export let photo: any;
 	export let onDelete: (photo: any) => void;
@@ -24,7 +24,7 @@
 		{#if showOverlay}
 			<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
 				<div>
-					<Button on:click={onDelete}>delete</Button>
+					<DeleteButtonWithConfirmation on:click={onDelete} />
 				</div>
 			</div>
 		{/if}
